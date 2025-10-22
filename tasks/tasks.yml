@@ -83,12 +83,4 @@
     dest: /etc/ssh/sshd_config.d/00_noroot_keyauth.conf
     mode: "0644"
   when: ansible_ready__ssh_deny_root_and_password
-
-- name: Reload sshd
-  ansible.builtin.service:
-    name: sshd
-    state: reloaded
-    enabled: true
-  async: 10
-  poll: 0
-  when: ansible_ready__ssh_deny_root_and_password
+  notify: handler_reload_sshd
