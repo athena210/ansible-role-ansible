@@ -1,12 +1,5 @@
-#SPDX-License-Identifier: MIT-0
 ---
-# handlers file for ansible_ready
-
-- name: (Handler) Reload sshd
-  ansible.builtin.service:
-    name: sshd
-    state: reloaded
-    enabled: true
-  async: 10
-  poll: 0
-  listen: handler_reload_sshd
+- name: Import handlers
+  ansible.builtin.import_tasks:
+    file: handlers.yml
+  become: true
