@@ -1,5 +1,34 @@
 # Ansible_ready
 
+## Установка вручную
+
+Установка роли выполняется обычным клонированием репозитория
+
+```shell
+cd ansible/roles
+git clone 'https://github.com/athena210/ansible-role-ansible.git' ansible_ready
+```
+
+## Установка списком
+
+Установку можно выполнять из списка в файле `requirements-galaxy.yml`
+
+```yaml
+---
+roles:
+  - src: https://github.com/athena210/ansible-role-ansible.git
+    name: ansible_ready
+    scm: git
+    version: master
+```
+
+Запуск установки
+
+```shell
+cd ansible
+ansible-galaxy install -p roles -r requirements-galaxy.yml
+```
+
 ## Подготовка
 Готовит хост для подключений ansible. На хосте должен быть установлен python3 и присутствовать пользователь с парольным входом и парольным sudo. На управляющей машине нужно установить `passlib`.
 
