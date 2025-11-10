@@ -1,5 +1,29 @@
 # Ansible_ready
 
+# План
+
+Скрипт подготовки, без ключа и правки ssh
+``` shell
+
+# debian-ubuntu
+useradd -m --shell /bin/sh ansible && apt update && apt install -y python3 python3-pip
+
+# alpine
+adduser --disabled-password --shell /bin/sh ansible && apk update && apk add --no-cache python3 py3-pip
+
+# opensuse
+useradd -m --shell /bin/sh ansible && zypper refresh && zypper install openssh python3 python3-pip
+
+# arch
+# centos
+
+cat > /etc/sudoers.d/ansible <<SUDOERS
+Defaults:ansible !fqdn
+Defaults:ansible !requiretty
+ansible ALL=(ALL) NOPASSWD: ALL
+SUDOERS
+```
+
 ## Установка вручную
 
 Установка роли выполняется обычным клонированием репозитория
